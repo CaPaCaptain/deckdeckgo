@@ -1,6 +1,6 @@
 {
   "projects": {
-    "default": "deckdeckgo-app",
-    "staging": "deckdeckgo-app-beta"
+    "default": "deckdeckgo-studio-c694b",
+    "staging": "deckdeckgo-studio-c694b"
   }
 }
