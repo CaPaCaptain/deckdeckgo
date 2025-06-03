@@ -1,7 +1,7 @@
 {
   "projects": {
-    "default": "deckdeckgo-studio-c694b",
-    "staging": "deckdeckgo-studio-c694b",
-    "dev": "deckdeckgo-studio-c694b"
+    "default": "deckdeckgo-ce04b",
+    "staging": "deckdeckgo-ce04b",
+    "dev": "deckdeckgo-ce04b"
   }
 }
