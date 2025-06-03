@@ -21,9 +21,9 @@ jobs:
         working-directory: ./cloud/functions
       - name: Setup Firebase CLI (compatible version)
         run: npm install -g firebase-tools@11.30.0
-      - name: Deploy to Firebase
+      - name: Deploy to Firebase (with legacy auth)
         run: |
-          echo '${{ secrets.FIREBASE_TOKEN }}' > $HOME/gcp-key.json
-          export GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp-key.json
-          firebase deploy --only functions --project deckdeckgo-ce04b
+          firebase deploy --only functions --project deckdeckgo-ce04b --token "$FIREBASE_TOKEN"
         working-directory: ./cloud
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
