@@ -13,22 +13,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
       - name: Set Node version
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
       - name: Install Dependencies
         run: npm ci
         working-directory: ./docs
       - name: Build
         run: npm run build
         working-directory: ./docs
+      - name: Setup Firebase CLI
+        run: npm install -g firebase-tools
       - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          PROJECT_ID: 'default'
-          PROJECT_PATH: './docs'
+        run: |
+          echo '${{ secrets.FIREBASE_TOKEN }}' > $HOME/gcp-key.json
+          export GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcp-key.json
+          firebase deploy --only hosting --project deckdeckgo-ce04b
+        working-directory: ./docs
